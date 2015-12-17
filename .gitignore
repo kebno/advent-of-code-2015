@@ -32,3 +32,4 @@
 *.dSYM/
 *.swp
 .DS_Store
+day-03/*.ppm

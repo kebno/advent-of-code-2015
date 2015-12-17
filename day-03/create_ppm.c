@@ -5,7 +5,7 @@
 
 int main(void)
 {
-  const int dimx = 8192, dimy = 8192;
+  const int dimx = 256, dimy = 256;
   int i, j;
   FILE *fp = fopen("first.ppm", "wb"); /* b - binary mode */
   (void) fprintf(fp, "P6\n%d %d\n255\n", dimx, dimy);
