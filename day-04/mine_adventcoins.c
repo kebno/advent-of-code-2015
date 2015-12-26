@@ -24,7 +24,7 @@ int main(int argc, char * argv[]) {
 	char * input = malloc(sizeof(unsigned char) * 20);
 	size_t ii = 0, max_count = INT_MAX;
 
-	for (ii = 2143777232; ii < max_count; ii++) {
+	for (ii = 0; ii < max_count; ii++) {
 		int nchar = sprintf(input, "%s%0zu", argv[1], ii);
 		// fprintf(stderr, "Input: %s\n", input);
 
@@ -42,7 +42,8 @@ int main(int argc, char * argv[]) {
 		// If it finds it at the beginning of the hash
 		if (mdstring == strstr(mdstring, "00000")) {
 			printf("5 zeros Magic number is %zu\n", ii);
-		} else if (mdstring == strstr(mdstring, "000000")) {
+		}
+		if (mdstring == strstr(mdstring, "000000")) {
 			printf("6 zeros Magic number is %zu\n", ii);
 			break;
 		}
