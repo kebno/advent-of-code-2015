@@ -36,7 +36,6 @@ int main(int argc, char * argv[]) {
 		for (size_t i = 0; i < 16; i++) {
 			sprintf(&mdstring[i*2], "%02x", (unsigned int)md[i]);
 		}
-
 		// fprintf(stderr, "Output: %s\n", mdstring);
 
 		// If it finds it at the beginning of the hash
