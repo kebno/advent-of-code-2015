@@ -1,10 +1,9 @@
 # Many thanks to stackoverflow answer http://superuser.com/a/769482
 # As usual, sed and awk are the answer for filtering a file and then processing it
 
-# Also, http://www.regexr.com/ is ESSENTIAL. I appreciate (and will donate to) sites like this. (there's one that explains bash commands and their flags in human-readable english)
+# Also, http://www.regexr.com/ is ESSENTIAL. I appreciate sites like this. (there's another one that explains bash commands and their flags in human-readable english)
 
 # (\w)\1{1} Create capture group that matches any word character. Backreference to match the result of capture group 1 (\1), and match 1 of the preceeding token {1}. This matches double characters.
-# n{1} Match character "n" and match 1 of preceeding token
 
 # A nice string is one with all of the following properties:
 #
