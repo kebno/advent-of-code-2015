@@ -1,0 +1,8 @@
+1674 -> b
+ab AND ad -> ae
+NOT ac -> ad
+1 AND ht -> hu
+NOT hn -> ho
+cd LSHIFT 15 -> ch
+hc OR hd -> he
+he RSHIFT 3 -> hg
