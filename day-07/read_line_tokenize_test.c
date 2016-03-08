@@ -1,17 +1,26 @@
 /* Try out parsing the input file for this test. */
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#define NLEN 40
+#define NLEN 25
 char * s_gets(char * line_buffer, int n);
-void get_tokens(char * token_string, int len);
+size_t get_tokens(char ** token_array, int len, char * token_string);
+
+void fill_node();
 
 int main(const int argc, const char ** argv) {
-	// char input[] = "ab AND ad -> ae, NOT ac -> ad";
-
 	char input[NLEN];
 	while (s_gets(input, NLEN)) {
-		get_tokens(input, NLEN);
+		char * * token_array = NULL;
+		size_t token_count = get_tokens(token_array, NLEN, input);
+
+		printf("Lengths of %zu tokens: \n", token_count);
+		fflush(stdout);
+		for (size_t i = 0; i < token_count; i++) {
+			printf("%lu ", strlen(token_array[i]));
+		}
+		printf("\n");
 	}
 
 	printf("Contents of the last line after token processing: \n'");
@@ -23,17 +32,42 @@ int main(const int argc, const char ** argv) {
 	return(0);
 }
 
-void get_tokens(char * token_string, int len) {
-	int count = 0;
+void fill_node(void) {
+
+}
+
+
+size_t get_tokens(char ** token_array, int len, char * token_string) {
 	printf("Parsing the input string '%s'\n", token_string);
+	/* make a copy for later use as strtok replaces separator with '\0' */
+	char * token_string_copy = strdup(token_string);
+
+	/* Count the number of tokens in this string */
+	size_t token_count = 0;
 	char * token = strtok(token_string, " ");
 	while (token) {
-		fprintf(stderr, "Length of token: %ld\n", strlen(token));
-		puts(token);
+		// puts(token);
+		token_count++;
 		token = strtok(NULL, " ");
-		count++;
 	}
-	printf("There were %d tokens found\n\n", count);
+	// printf("There were %zu tokens found\n\n", token_count);
+
+	/* Store each token in a character array */
+	token_array = malloc(token_count * sizeof(char *));
+	token_count = 0;
+	token = strtok(token_string_copy, " ");
+	while (token) {
+		token_array[token_count] = strdup(token);
+
+		printf("%s\n", token_array[token_count]);
+		fprintf(stderr, "Length of token: %ld\n", strlen(token_array[token_count]));
+
+		/* get next token */
+		token = strtok(NULL, " ");
+		token_count++;
+	}
+	printf("There were %zu tokens found\n\n", token_count);
+	return token_count;
 }
 
 char * s_gets(char * line_buffer, int n) {
